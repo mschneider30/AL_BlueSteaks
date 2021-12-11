@@ -30,15 +30,12 @@ return true;
 
   public boolean add(int a) {
     for (int i = 0; i <= this._data.size();i++) {
-      System.out.println(this);
       this._data.add(i, a);
-      System.out.println(this);
       if (this.testOrdered()) {
         return true;
 
       }else{
         this._data.remove(i);
-        System.out.println(this);
       }
     }
     if(this._data.size() == 0) {
@@ -47,6 +44,16 @@ return true;
     }
     return false;
   }
+
+  public void remove(int index) {
+    this._data.remove(index);
+  }
+
+  public void set(int index, int input) {
+    this.remove(index);
+    this.add(input);
+  }
+
 
   public static void main (String[] args) {
     OrderedArrayList tester = new OrderedArrayList();
@@ -59,6 +66,19 @@ return true;
     tester.add((int)(Math.random()*100));
 
     System.out.println(tester);
-    System.out.println(tester.testOrdered());
+
+    int a = 1;
+    int b = 2;
+    int c = 3;
+    int d = 4;
+    int e = 5;
+
+    tester.set(0,c);
+    tester.set(1,b);
+    tester.set(2,e);
+    tester.set(3,a);
+    tester.set(4,d);
+
+    System.out.println(tester);
   }
 }
