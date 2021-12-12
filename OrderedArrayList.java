@@ -19,6 +19,16 @@ public class OrderedArrayList {
     return outVal;
   }
 
+  public int size() {
+    return this._data.size();
+  }
+
+  public int get(int index) {
+    return this._data.get(index);
+  }
+
+
+
   public boolean testOrdered () {
   for (int r = 0; r < this._data.size()-1;r++) {
     if (this._data.get(r) > this._data.get(r+1)) {
@@ -67,6 +77,9 @@ return true;
 
     System.out.println(tester);
 
+    System.out.println("Size of Tester: " + tester.size());
+    System.out.println("Third Item in List: " + tester.get(2));
+
     int a = 1;
     int b = 2;
     int c = 3;
@@ -79,6 +92,7 @@ return true;
     tester.set(3,a);
     tester.set(4,d);
 
-    System.out.println(tester);
+    System.out.println("Test of set method. It should replace all 5 numbers in tester with the numbers 1-5 sorted correctly: " +tester);
+
   }
 }
