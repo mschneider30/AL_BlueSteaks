@@ -65,25 +65,28 @@ public class OrderedArrayList {
   // uses a binary search to find appropriate index
   public boolean addBinary(Integer newVal)
   {
-    if (this._data.size() == 0) {
-      this._data.add(newVal);
-      return true;
+    int lo = 0;
+    int avg = 0;
+    int hi = this._data.size() - 1;
+
+    while (lo <= hi) {
+      avg = (lo + hi) / 2;
+      
+      if (newVal < _data.get(avg)) {
+        hi = avg - 1;
+      }
+
+      else if (newVal == _data.get(avg)) {
+        _data.add(avg, newVal);
+        return true;
+      }
+
+      else {
+        lo = avg + 1;
+      }
     }
-    int c = this._data.size() / 2;
-  while ( c < this._data.size()) {
-    int d= c + 1;
-    if (newVal <= this._data.get(d) && newVal >=this._data.get(c)) {
-      this._data.add(d, newVal);
-      return true;
-    } else if (newVal > this._data.get(d)) {
-      c+=1;
-      return true;
-    } else {
-      c-=1;
-      return true;
-    }
-  }
-  return false;
+    _data.add(lo, newVal);
+    return true;
   }
 
   // main method solely for testing purposes
@@ -92,17 +95,16 @@ public class OrderedArrayList {
 
     OrderedArrayList Franz = new OrderedArrayList();
     // testing linear search
-    for( int i = 0; i < 15; i++ )
+    for( int i = 0; i < 15; i++ ) {
       Franz.addLinear( (int)( 50 * Math.random() ) );
+    }
     System.out.println( Franz );
     // testing binary search
     Franz = new OrderedArrayList();
-    for( int i = 0; i < 15; i++ )
+    for( int i = 0; i < 15; i++ ) {
       Franz.addBinary( (int)( 50 * Math.random() ) );
+    }
     System.out.println( Franz );
 
   }//end main()
-
-
-
 }
