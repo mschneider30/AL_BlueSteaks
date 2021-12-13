@@ -1,0 +1,8 @@
+DISCO
+- Using ArrayList methods in our wrapper class allows us to write methods more efficiently. 
+- Binary search allows us to find the proper index to add at faster than linear search does for larger ArrayLists
+- Creating a temporary variable to store the "status" of a method allows us to write methods without using the `break` keyword or altering the returnType of a method.
+- This unaltering of the returnType allows us to better utilize interfaces to organize methods.
+
+QCC
+- No unresolved questions.
