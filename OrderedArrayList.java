@@ -31,15 +31,15 @@ public class OrderedArrayList {
   }
 
   //method that returns value at specified index
-  public int get(int index) {
+  public Integer get(int index) {
     return this._data.get(index);
   }
 
 
 
   //removes value at specified index
-  public void remove(int index) {
-    this._data.remove(index);
+  public Integer remove(int index) {
+    return this._data.remove(index);
   }
 
 
@@ -49,12 +49,15 @@ public class OrderedArrayList {
   public void addLinear(Integer newVal)
   {
     int c = 0;
-    for(int i = 0;c==0 && i < this._data.size(); i++) {
+    //continues iteration as long as newVal has not been added
+    for(int i = 0; c==0 && i < this._data.size(); i++) {
+      //if newVal less than or equal to value at index i, add at index i and set c to be 0 to break out of loop
       if (newVal <= this._data.get(i)) {
         this._data.add(i,newVal);
         c++;
       }
     }
+    //accounts for case when ArrayList is of length 0
     if (c == 0) {
       this._data.add(newVal);
     }
@@ -65,26 +68,33 @@ public class OrderedArrayList {
   // uses a binary search to find appropriate index
   public boolean addBinary(Integer newVal)
   {
+    //initializes subarray indices
     int lo = 0;
     int avg = 0;
     int hi = this._data.size() - 1;
 
+    //slices subarray as long as the lower end is smaller than or equal to larger end
     while (lo <= hi) {
+      //finds middle index
       avg = (lo + hi) / 2;
       
+      //if newVal is less than value at median index, set higher end of subarray to be median index - 1
       if (newVal < _data.get(avg)) {
         hi = avg - 1;
       }
 
+      //if newVal is equal to value at median index, add newVal at index and exit method
       else if (newVal == _data.get(avg)) {
         _data.add(avg, newVal);
         return true;
       }
 
+      //if newVal is greater than value at median index, set lower end of subarray to be median index + 1
       else {
         lo = avg + 1;
       }
     }
+    //accounts for case when ArrayList is of size 0
     _data.add(lo, newVal);
     return true;
   }
