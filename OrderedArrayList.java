@@ -1,10 +1,16 @@
 import java.util.ArrayList;
+
 public class OrderedArrayList {
+  
+  //instance variables
   private ArrayList<Integer> _data;
-  public OrderedArrayList (){
+  
+  //default constructor -- initializes new ArrayList that holds only int values
+  public OrderedArrayList() {
     _data = new ArrayList<Integer>();
   }
 
+  //Override default toString() method -- Returns string representation of ArrayList
   public String toString()
   {
     String outVal = "[";
@@ -19,46 +25,62 @@ public class OrderedArrayList {
     return outVal;
   }
 
+  //accessor method for private instance variable size
   public int size() {
     return this._data.size();
   }
 
+  //method that returns value at specified index
   public int get(int index) {
     return this._data.get(index);
   }
 
-
-
+  //method that checks whether the ArrayList is properly sorted
   public boolean testOrdered () {
-  for (int r = 0; r < this._data.size()-1;r++) {
-    if (this._data.get(r) > this._data.get(r+1)) {
-        return false;
-      }
+    //iterates through ArrayList
+    for (int r = 0; r < this._data.size()-1; r++) {
+      //checks if value at current index is larger than value at next index -- returns false if true / continues iteration if false
+      if (this._data.get(r) > this._data.get(r+1)) {
+          return false;
+        }
     }
-return true;
-}
+    //returns true if iteration is complete
+    return true;
+  }
 
+  //method that adds value 'a' into ArrayList
   public boolean add(int a) {
+    //iterates through ArrayList
     for (int i = 0; i <= this._data.size();i++) {
+      //adds value at specified index
       this._data.add(i, a);
+      //checks if ArrayList is ordered
       if (this.testOrdered()) {
+        //stop method
         return true;
-
-      }else{
+      }
+      else {
+        //if not ordered, remove value at index and continue iteration
         this._data.remove(i);
       }
     }
+    
+    //accounts for case if ArrayList is empty
     if(this._data.size() == 0) {
+      //add value at index 0, stop method
       this._data.add(0, a);
       return true;
     }
+    //ensures that method is guaranteed to have boolean returnType
     return false;
   }
 
+  //removes value at specified index
   public void remove(int index) {
     this._data.remove(index);
   }
 
+  //replaces value at specified index with specified value
   public void set(int index, int input) {
     this.remove(index);
     this.add(input);
@@ -92,7 +114,7 @@ return true;
     tester.set(3,a);
     tester.set(4,d);
 
-    System.out.println("Test of set method. It should replace all 5 numbers in tester with the numbers 1-5 sorted correctly: " +tester);
+    System.out.println("Test of set method. It should replace all 5 numbers in tester with the numbers 1-5 sorted correctly: " + tester);
 
   }
 }
